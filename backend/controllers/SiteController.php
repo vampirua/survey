@@ -2,12 +2,11 @@
 
 namespace backend\controllers;
 
-use common\models\Forms;
+use common\models\LoginFormAdmin;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use common\models\LoginForm;
 
 /**
  * Site controller
@@ -73,7 +72,7 @@ class SiteController extends Controller {
 
         $this->layout = 'blank';
 
-        $model = new LoginForm();
+        $model = new LoginFormAdmin();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
