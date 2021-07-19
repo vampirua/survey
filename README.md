@@ -15,7 +15,7 @@ admin controllers :
     --
     /fields/(create/update/index/view) - crud fields
     --
-    /froms/(create/update/index/view) - crud forms
+    /forms/(create/update/index/view) - crud forms
     --
     /user-form-results/(create/update/index/view) - crud user result
 
