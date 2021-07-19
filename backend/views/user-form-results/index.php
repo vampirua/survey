@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'values',
+                'filter'=>false,
                 'value' => function (UserFormResults $model) {
                     $i = 0;
                     $html = '';
