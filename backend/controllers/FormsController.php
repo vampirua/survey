@@ -5,6 +5,7 @@ namespace backend\controllers;
 use backend\service\FormService;
 use common\models\Fields;
 use common\models\Forms;
+use common\models\UserFormResults;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
@@ -29,7 +30,7 @@ class FormsController extends Controller {
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index','create','view','update'],
+                        'actions' => ['logout', 'index', 'create', 'view', 'update', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -43,6 +44,7 @@ class FormsController extends Controller {
             ],
         ];
     }
+
     /**
      * Lists all Forms models.
      *
@@ -138,6 +140,12 @@ class FormsController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionDelete($id) {
+        $userAnswer = UserFormResults::find()->andWhere(['ref_form' => $id])->one();
+        if ($userAnswer) {
+            Yii::$app->session->setFlash('warning', 'User already have form');
+
+            return $this->redirect(['index']);
+        }
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

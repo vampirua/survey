@@ -31,10 +31,15 @@ class LoginFormAdmin extends Model {
     public function login() {
         if ($this->validate()) {
             $user = $this->getUser();
+            if ($user === null) {
+                return false;
+            }
+
             if ($user->ref_user_group === 1) {
                 return Yii::$app->user->login($this->getUser());
             }
         }
+
         return false;
     }
 

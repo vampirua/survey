@@ -9,5 +9,23 @@ This project crete for questionnaires of users .
 3. Crete db and connect in project .
 4. Run migration (php yii migrate).
 
+admin controllers : 
+    /site/login - login admin
+    /site/logout - logout admin
+    --
+    /fields/(create/update/index/view) - crud fields
+    --
+    /froms/(create/update/index/view) - crud forms
+    --
+    /user-form-results/(create/update/index/view) - crud user result
+
+ user controllers :
+    /site/login - login user
+    /site/logout - logout user
+    /site/index - all form for user 
+    /site/answer - user form result
+    /site/form - survey user 
+    /site/delete-answer - delete survey    
+    --
 
 
