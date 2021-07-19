@@ -13,11 +13,11 @@ admin controllers :
     /site/login - login admin
     /site/logout - logout admin
     --
-    /fields/(create/update/index/view) - crud fields
+    /fields/(create/update/index/view/delete) - crud fields
     --
-    /forms/(create/update/index/view) - crud forms
+    /forms/(create/update/index/view/delete) - crud forms
     --
-    /user-form-results/(create/update/index/view) - crud user result
+    /user-form-results/(index/delete) - crud user result
 
  user controllers :
     /site/login - login user

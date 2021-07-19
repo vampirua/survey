@@ -26,13 +26,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'ref_user',
                 'value' => function (UserFormResults $model) {
                     return $model->refUser->name;
-                }
+                },
             ],
             [
                 'attribute' => 'ref_form',
                 'value' => function (UserFormResults $model) {
                     return $model->refForm->name;
-                }
+                },
             ],
             [
                 'attribute' => 'values',
@@ -48,15 +48,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             $html .= $name . ':' . $answer . ' ' . ' ;';
                         }
                     }
+
                     return $html;
-                }
+                },
             ],
             [
                 'attribute' => 'create_at',
-                'format' => 'date'
+                'format' => 'date',
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+            ],
         ],
     ]); ?>
 

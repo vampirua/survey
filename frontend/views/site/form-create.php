@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php echo HtmlHelpers::getHtmlFields($field->refFiled) ?>
                     <br>
                 <?php endforeach; ?>
-
+                <br>
                 <div class="form-group">
                     <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
                 </div>

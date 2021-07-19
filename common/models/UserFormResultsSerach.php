@@ -9,24 +9,21 @@ use common\models\UserFormResults;
 /**
  * UserFormResultsSerach represents the model behind the search form of `common\models\UserFormResults`.
  */
-class UserFormResultsSerach extends UserFormResults
-{
+class UserFormResultsSerach extends UserFormResults {
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['id', 'ref_user', 'ref_form', 'create_at'], 'integer'],
-            [['values'], 'safe'],
+            [['id', 'create_at'], 'integer'],
+            [['values', 'ref_user', 'ref_form'], 'safe'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function scenarios()
-    {
+    public function scenarios() {
         // bypass scenarios() implementation in the parent class
         return Model::scenarios();
     }
@@ -38,10 +35,9 @@ class UserFormResultsSerach extends UserFormResults
      *
      * @return ActiveDataProvider
      */
-    public function search($params)
-    {
-        $query = UserFormResults::find();
-
+    public function search($params) {
+        $query = UserFormResults::find()->with(['refUser','refForm']);
+        $query->joinWith(['refUser', 'refForm']);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -59,11 +55,11 @@ class UserFormResultsSerach extends UserFormResults
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'ref_user' => $this->ref_user,
             'ref_form' => $this->ref_form,
             'create_at' => $this->create_at,
         ]);
-
+        $query->andFilterWhere(['like', 'users.name', $this->ref_user]);
+        $query->andFilterWhere(['like', 'forms.name', $this->ref_form]);
         $query->andFilterWhere(['like', 'values', $this->values]);
 
         return $dataProvider;
